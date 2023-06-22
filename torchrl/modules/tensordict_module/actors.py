@@ -459,7 +459,7 @@ class QValueModule(TensorDictModuleBase):
 
     @staticmethod
     def _categorical(value: torch.Tensor) -> torch.Tensor:
-        return torch.argmax(value, dim=-1).to(torch.long)
+        return torch.argmax(value, dim=-1, keepdim=True).to(torch.long)
 
     def _mult_one_hot(self, value: torch.Tensor, support: torch.Tensor) -> torch.Tensor:
         values = value.split(self.var_nums, dim=-1)
@@ -487,7 +487,7 @@ class QValueModule(TensorDictModuleBase):
     def _categorical_action_value(
         values: torch.Tensor, action: torch.Tensor
     ) -> torch.Tensor:
-        return values.gather(-1, action.unsqueeze(-1))
+        return values.gather(-1, action)
         # if values.ndim == 1:
         #     return values[action].unsqueeze(-1)
         # batch_size = values.size(0)
@@ -664,7 +664,7 @@ class DistributionalQValueModule(QValueModule):
         value = self._support_expected(
             value,
         )
-        return torch.argmax(value, dim=-1).to(torch.long)
+        return torch.argmax(value, dim=-1, keepdim=True).to(torch.long)
 
     def _binary(self, value: torch.Tensor) -> torch.Tensor:
         raise NotImplementedError(

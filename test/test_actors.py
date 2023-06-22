@@ -78,7 +78,7 @@ class TestQValue:
         "action_space, expected_action",
         (
             ("one_hot", [0, 0, 1, 0, 0]),
-            ("categorical", 2),
+            ("categorical", [2]),
         ),
     )
     @pytest.mark.parametrize("key", ["somekey", None])
@@ -117,7 +117,7 @@ class TestQValue:
         "action_space, expected_action",
         (
             ("one_hot", [0, 0, 1, 0, 0]),
-            ("categorical", 2),
+            ("categorical", [2]),
         ),
     )
     @pytest.mark.parametrize("model_type", ["td", "nn"])
@@ -168,7 +168,7 @@ class TestQValue:
         "action_space, expected_action",
         (
             ("one_hot", [0, 0, 1, 0, 0]),
-            ("categorical", 2),
+            ("categorical", [2]),
         ),
     )
     def test_qvalue_hook_0_dim_batch(self, action_space, expected_action):
@@ -187,7 +187,7 @@ class TestQValue:
         "action_space, expected_action",
         (
             ("one_hot", [[0, 0, 1, 0, 0], [1, 0, 0, 0, 0]]),
-            ("categorical", [2, 0]),
+            ("categorical", [[2], [0]]),
         ),
     )
     def test_qvalue_hook_1_dim_batch(self, action_space, expected_action):
@@ -211,7 +211,7 @@ class TestQValue:
         "action_space, expected_action",
         (
             ("one_hot", [0, 0, 1, 0, 0]),
-            ("categorical", 2),
+            ("categorical", [2]),
         ),
     )
     @pytest.mark.parametrize("key", ["somekey", None])
@@ -273,7 +273,7 @@ class TestQValue:
         "action_space, expected_action",
         (
             ("one_hot", [0, 0, 1, 0, 0]),
-            ("categorical", 2),
+            ("categorical", [2]),
         ),
     )
     @pytest.mark.parametrize("model_type", ["td", "nn"])
@@ -346,7 +346,7 @@ class TestQValue:
         "action_space, expected_action",
         (
             ("one_hot", [0, 0, 1, 0, 0]),
-            ("categorical", 2),
+            ("categorical", [2]),
         ),
     )
     def test_distributional_qvalue_hook_0_dim_batch(
